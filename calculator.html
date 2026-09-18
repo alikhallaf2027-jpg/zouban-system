@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Zouban</title>
+<style>
+body{background:#0f172a;color:#fff;font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh}
+.card{background:#1e293b;padding:20px;border-radius:15px;width:300px}
+input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff}
+button{width:100%;padding:12px;background:#38bdf8;border:none;border-radius:8px;font-weight:bold}
+#res{margin-top:10px;background:#0f172a;padding:10px;border:1px dashed #38bdf8;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="card">
+<h3 style="text-align:center;color:#38bdf8">Zouban<br>N=n!+10^q+m</h3>
+<input id="n" type="number" value="5" placeholder="n">
+<input id="q" type="number" value="3" placeholder="q">
+<input id="m" type="number" value="7" placeholder="m">
+<button onclick="c()">احسب</button>
+<div id="res"></div>
+</div>
+<script>
+function f(x){let r=1n;for(let i=2n;i<=BigInt(x);i++)r*=i;return r}
+function c(){let n=document.getElementById('n').value||0;let q=document.getElementById('q').value||0;let m=BigInt(document.getElementById('m').value||0);let a=f(n);let b=10n**BigInt(q);let N=a+b+m;document.getElementById('res').innerHTML='N='+N}
+c()
+</script>
+</body>
+</html>
