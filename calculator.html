@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Zouban</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حاسبة ذوبان</title>
 <style>
-body{background:#0f172a;color:#fff;font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh}
-.card{background:#1e293b;padding:20px;border-radius:15px;width:300px}
-input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff}
-button{width:100%;padding:12px;background:#38bdf8;border:none;border-radius:8px;font-weight:bold}
-#res{margin-top:10px;background:#0f172a;padding:10px;border:1px dashed #38bdf8;word-break:break-all}
+body{background:#0f172a;color:#fff;font-family:sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}
+.card{background:#1e293b;padding:20px;border-radius:15px;width:90%;max-width:350px;box-shadow:0 0 20px #000}
+input{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;box-sizing:border-box;font-size:16px}
+button{width:100%;padding:12px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:18px;margin-top:10px;font-weight:bold}
+#res{margin-top:15px;background:#0f172a;padding:15px;border-radius:8px;text-align:center;font-size:20px;color:#22c55e}
+h3{text-align:center;color:#38bdf8}
 </style>
 </head>
 <body>
 <div class="card">
-<h3 style="text-align:center;color:#38bdf8">Zouban<br>N=n!+10^q+m</h3>
-<input id="n" type="number" value="5" placeholder="n">
-<input id="q" type="number" value="3" placeholder="q">
-<input id="m" type="number" value="7" placeholder="m">
-<button onclick="c()">احسب</button>
-<div id="res"></div>
+<h3>حاسبة ذوبان</h3>
+<input id="n" type="number" value="5" placeholder="عدد n">
+<input id="q" type="number" value="3" placeholder="كمية q">
+<input id="p" type="number" placeholder="السعر">
+<button onclick="calc()">احسب الآن</button>
+<div id="res">النتيجة ستظهر هنا</div>
 </div>
 <script>
-function f(x){let r=1n;for(let i=2n;i<=BigInt(x);i++)r*=i;return r}
-function c(){let n=document.getElementById('n').value||0;let q=document.getElementById('q').value||0;let m=BigInt(document.getElementById('m').value||0);let a=f(n);let b=10n**BigInt(q);let N=a+b+m;document.getElementById('res').innerHTML='N='+N}
-c()
+function calc(){
+let n=parseFloat(document.getElementById('n').value)||0;
+let q=parseFloat(document.getElementById('q').value)||0;
+let p=parseFloat(document.getElementById('p').value)||0;
+let result = (n * q);
+if(p>0) result = result * p;
+document.getElementById('res').innerText = 'الناتج: ' + result;
+}
 </script>
 </body>
 </html>
