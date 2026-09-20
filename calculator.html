@@ -3,39 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حاسبة زوبان - النسخة العالمية</title>
+<title>ZOOBAN CALCULATOR</title>
 <style>
-*{box-sizing:border-box;font-family:Tajawal,sans-serif}
-body{margin:0;background:#0f172a;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:15px}
-.card{width:100%;max-width:500px;background:#fff;border-radius:20px;overflow:hidden}
-.header{background:linear-gradient(135deg,#d4af37,#8a6d3b);padding:20px;text-align:center}
-.header h2{margin:0;font-size:28px}
-.content{padding:24px}
-label{font-weight:bold;display:block;margin:14px 0 6px}
-input,select{width:100%;padding:14px;border-radius:12px;border:2px solid #e5e7eb;font-size:16px}
-button{width:100%;margin-top:20px;background:#0f172a;color:#d4af37;padding:16px;border:none;border-radius:12px;font-size:20px;font-weight:bold;cursor:pointer}
-#result{margin-top:20px;background:#f3f4f6;padding:16px;border-radius:12px;text-align:center;font-size:22px;font-weight:bold}
+body{background:#111;color:#fff;font-family:Arial;text-align:center;padding:20px}
+h1{color:#FFD700;font-size:32px;margin:10px}
+input{width:90%;padding:15px;font-size:22px;border:3px solid #FFD700;border-radius:10px;background:#222;color:#fff;text-align:center}
+button{width:92%;padding:15px;margin-top:15px;font-size:22px;background:#FFD700;color:#000;border:none;border-radius:10px;font-weight:bold}
+#out{margin-top:20px;text-align:right;background:#222;padding:15px;border-radius:10px;border:1px solid #FFD700}
+.unit{padding:10px;border-bottom:1px solid #333}
+.unit b{color:#FFD700}
 </style>
 </head>
 <body>
-<div class="card">
-<div class="header"><h2>𓋹 حاسبة زوبان الذكية</h2></div>
-<div class="content">
-<label>القيمة</label><input id="val" type="number" value="1">
-<label>من</label><select id="from"><option>زوبان</option><option>ذراع</option><option>متر</option></select>
-<label>إلى</label><select id="to"><option>متر</option><option>ذراع</option><option>زوبان</option></select>
-<button onclick="calc()">احسب الآن</button>
-<div id="result">النتيجة: --</div>
-</div>
-</div>
+<h1>𓂀 ZOOBAN CALCULATOR</h1>
+<p style="color:#FFD700">BY: ALI RAGAB ALI KHELAF - 20! SYSTEM %100 - توكلنا على الله</p>
+
+<input id="num" type="number" placeholder="اكتب الرقم هنا مثلا 1000 او 2432902008176640000">
+<button onclick="calc()">ENTER - سكن الرقم</button>
+
+<div id="out"></div>
+
+<p style="margin-top:20px;color:#FFD700">ZOOBAN MOZON 100%<br>R=D/1000 | B=2e18 | H=Dx6 | HL=H*1000 | KH=HL*1000</p>
+
 <script>
 function calc(){
-let v=parseFloat(document.getElementById('val').value);
-let f=document.getElementById('from').value;
-let t=document.getElementById('to').value;
-let m=v; if(f==='زوبان') m=v*0.58; if(f==='ذراع') m=v*0.46;
-let o=m; if(t==='زوبان') o=m/0.58; if(t==='ذراع') o=m/0.46;
-document.getElementById('result').innerText='النتيجة: '+o.toFixed(4)+' '+t;
+ let D = BigInt(document.getElementById('num').value || 0);
+ if(D==0){alert('اكتب رقم يا ملك');return;}
+ let units = [
+  {n:'ريشة - Risha', v:1n},
+  {n:'ضلع - Del3', v:1000n},
+  {n:'بلوك - Block', v:2000000000000000000n},
+  {n:'هرم - Haram', v:2000000000000000000n*6n},
+  {n:'هلال - Hilal', v:2000000000000000000n*6n*1000n},
+  {n:'خرطوش - Khartoush', v:2000000000000000000n*6n*1000n*1000n}
+ ];
+ let h='';
+ units.forEach(u=>{
+   let count = D / u.v;
+   let rem = D % u.v;
+   h+=`<div class="unit"><b>${u.n}:</b> ${count.toLocaleString('en-US')} <br><span style="font-size:12px;color:#aaa">الباقي: ${rem.toLocaleString('en-US')} - الوحدة: ${u.v.toLocaleString('en-US')}</span></div>`;
+ });
+ document.getElementById('out').innerHTML=h;
 }
 </script>
 </body>
