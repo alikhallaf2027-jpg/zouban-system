@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZOBAN V5 FINAL - No End</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap');
+body{background:#060a14;color:#fff;font-family:'Cairo',sans-serif;margin:0;padding:20px;text-align:center}
+.card{max-width:700px;margin:auto;background:linear-gradient(180deg,#0f1b33,#0a1222);border:2px solid #c9a227;border-radius:24px;padding:24px}
+h1{color:#f3d24a} textarea{width:100%;min-height:120px;background:#020612;border:1px solid #2a3a5a;border-radius:16px;color:#f3d24a;font-size:20px;padding:14px;direction:ltr}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:14px 0}
+.stat{background:#0a1328;border:1px solid #1f345c;border-radius:12px;padding:10px}
+.stat b{color:#f3d24a;font-size:22px;display:block}
+button{background:linear-gradient(180deg,#f3d24a,#c9a227);border:none;border-radius:12px;padding:12px 18px;font-weight:900;cursor:pointer}
+.result{margin-top:18px;background:#020612;border:1px dashed #c9a227;border-radius:16px;padding:16px;text-align:left;direction:ltr}
+.eyes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.eye{background:#0e1a33;border-radius:10px;padding:8px;border-left:4px solid #f3d24a}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>ZOBAN V5 FINAL 👑 No End</h1>
+<div>DOI: 10.5281/zenodo.22888571</div>
+<textarea id="input">1</textarea>
+<div class="stats">
+<div class="stat"><b id="len">1</b><span>خانات</span></div>
+<div class="stat"><b id="zeros">0</b><span>أصفار</span></div>
+<div class="stat"><b id="pow">0</b><span>10^</span></div>
+</div>
+<button onclick="addZeros(1000)">+ 1000 صفر</button>
+<button onclick="addZeros(100000)">+ 100 ألف صفر</button>
+<button onclick="wow()">🔥 سكن الرقم</button>
+<button onclick="clearZeros()">مسح</button>
+<div id="out" class="result">دوس سكن الرقم...</div>
+</div>
+<script>
+const inp=document.getElementById('input');
+function update(){
+ let s=inp.value.replace(/[^0-9]/g,'')||'0';
+ document.getElementById('len').textContent=s.length.toLocaleString();
+ document.getElementById('zeros').textContent=(s.match(/0/g)||[]).length.toLocaleString();
+ document.getElementById('pow').textContent=/^10*$/.test(s)?(s.length-1).toLocaleString():'—';
+}
+function addZeros(n){inp.value=(inp.value.replace(/[^0-9]/g,'')||'1')+'0'.repeat(n);update();}
+function clearZeros(){inp.value='1';update();}
+function wow(){
+ let s=inp.value.replace(/[^0-9]/g,'')||'0'; let L=s.length; let q=Math.floor((L-1)/18);
+ document.getElementById('out').innerHTML=`<b style="color:#f3d24a">✓ تم التسكين - No End</b><br>الرقم: ${L>60?s.slice(0,30)+'...['+L+' خانة]':s}<br><br>الست عيون:<br>1-خرطوش:${q%100} | 2-هلال:${Math.floor(q/100)%100} | 3-هرم:${Math.floor(q/10000)%100}<br>4-ضلع:20! | 5-بلوك:${(L-1)%18} | 6-ريشة:${L}→${q} بلوك<br><br><b>مليون صفر = ${q.toLocaleString()} بلوك = 6 أرقام فقط!</b>`;
+}
+inp.addEventListener('input',update);update();
+</script>
+</body>
+</html>
